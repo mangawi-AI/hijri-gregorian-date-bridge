@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import {
   HIJRI_MONTHS,
   formatGregorian,
