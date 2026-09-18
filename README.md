@@ -1,29 +1,21 @@
-# Welcome to your Lovable project
+# Date Bridge · محول التاريخ
 
-This project was built with [Lovable](https://lovable.dev).
+A bidirectional Hijri ⇄ Gregorian date converter for the Saudi and Gulf region, using the browser's native Umm al-Qura calendar data for accurate conversion (not an approximate arithmetic formula).
 
-## Build with Lovable
+**Live app:** https://hijri-gregorian-date-bridge.lovable.app
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Features
+- Convert Gregorian → Hijri and Hijri → Gregorian, both directions on one page
+- Accurate to the official Umm al-Qura calendar (Saudi Arabia's official calendar), via the browser's built-in `Intl.DateTimeFormat` ICU data
+- Bilingual — Arabic and English shown together, with correct RTL rendering
+- Shows the day of the week in both languages
+- Light and dark mode, with system preference detection
+- Fully responsive, no login or backend required
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
+## Tech stack
+- React + TypeScript
+- TanStack Router / TanStack Start
 - Tailwind CSS
+
+---
+By Mohsen Sami Angawi · محسن سامي عنقاوي
