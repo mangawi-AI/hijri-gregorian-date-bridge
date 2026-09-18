@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import {
   HIJRI_MONTHS,
   formatGregorian,
@@ -76,6 +77,29 @@ function ResultCard({
 const fieldClass =
   "w-full rounded-lg border border-input bg-card px-3 py-2.5 text-base text-foreground shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/40";
 
+function useTheme() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light");
+    setMounted(true);
+  }, []);
+
+  const toggle = () => {
+    setTheme((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.classList.toggle("dark", next === "dark");
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+      return next;
+    });
+  };
+
+  return { theme, mounted, toggle };
+}
+
 function Index() {
   const today = useMemo(() => todayUTC(), []);
   const todayHijri = useMemo(() => toHijri(today), [today]);
@@ -101,12 +125,24 @@ function Index() {
     [],
   );
 
+  const { theme, mounted, toggle } = useTheme();
+
   return (
     <main
       className="min-h-screen px-4 py-10 sm:py-14"
       style={{ backgroundImage: "var(--gradient-page)" }}
     >
       <div className="mx-auto w-full max-w-2xl">
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="rounded-full border border-border bg-card p-2.5 text-foreground shadow-sm transition hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring/40"
+          >
+            {mounted && theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </div>
         <header className="text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             Date Converter <span className="text-muted-foreground">·</span>{" "}
