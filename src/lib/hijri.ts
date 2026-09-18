@@ -82,7 +82,10 @@ function weekday(date: Date, locale: string) {
 
 export function formatHijri(date: Date): Formatted {
   return {
-    en: `${fmt(date, "en", "islamic-umalqura")} AH`,
+    en: (() => {
+      const h = toHijri(date);
+      return `${h.day} ${HIJRI_MONTHS[h.month - 1].en} ${h.year} AH`;
+    })(),
     ar: fmt(date, "ar-SA", "islamic-umalqura"),
     weekdayEn: weekday(date, "en"),
     weekdayAr: weekday(date, "ar-SA"),
