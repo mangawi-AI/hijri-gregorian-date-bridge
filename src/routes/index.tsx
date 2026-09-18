@@ -125,6 +125,8 @@ function Index() {
     [],
   );
 
+  const { theme, mounted, toggle } = useTheme();
+
   return (
     <main
       className="min-h-screen px-4 py-10 sm:py-14"
