@@ -133,6 +133,16 @@ function Index() {
       style={{ backgroundImage: "var(--gradient-page)" }}
     >
       <div className="mx-auto w-full max-w-2xl">
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="rounded-full border border-border bg-card p-2.5 text-foreground shadow-sm transition hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring/40"
+          >
+            {mounted && theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </div>
         <header className="text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             Date Converter <span className="text-muted-foreground">·</span>{" "}
