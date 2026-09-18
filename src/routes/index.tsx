@@ -271,7 +271,7 @@ function Index() {
           </span>
         </p>
         <p className="mt-1 text-center text-xs text-muted-foreground">
-          By Mohsen Sami Angawi -{" "}
+          By Mohsen Sami Angawi ·{" "}
           <span dir="rtl" lang="ar">
             محسن سامي عنقاوي
           </span>
