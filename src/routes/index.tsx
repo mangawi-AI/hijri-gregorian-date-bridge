@@ -77,6 +77,29 @@ function ResultCard({
 const fieldClass =
   "w-full rounded-lg border border-input bg-card px-3 py-2.5 text-base text-foreground shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/40";
 
+function useTheme() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light");
+    setMounted(true);
+  }, []);
+
+  const toggle = () => {
+    setTheme((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.classList.toggle("dark", next === "dark");
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+      return next;
+    });
+  };
+
+  return { theme, mounted, toggle };
+}
+
 function Index() {
   const today = useMemo(() => todayUTC(), []);
   const todayHijri = useMemo(() => toHijri(today), [today]);
